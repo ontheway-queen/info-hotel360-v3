@@ -133,18 +133,19 @@ export function Footer() {
           {/* Social */}
           <div className="flex items-center gap-3 mt-5">
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61584037133680"
+              target="_blank"
               className="size-9 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition"
             >
               <MdFacebook className="size-4" />
             </a>
 
-            <a
+            {/* <a
               href="#"
               className="size-9 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition"
             >
               <FaLinkedin className="size-4" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

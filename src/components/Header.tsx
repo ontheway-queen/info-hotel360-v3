@@ -1,9 +1,9 @@
-import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Hotel } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import logo from "/reservation.png";
+import { Link } from "@tanstack/react-router";
 const links = [
   { to: "/", key: "home" as const },
   { to: "/why-thehotel360", key: "why" as const },
@@ -25,17 +25,23 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border">
-      <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2 shrink-0">
-          {/* <div className="size-9 rounded-lg bg-gradient-primary flex items-center justify-center text-primary-foreground shadow-elegant">
-            <Hotel className="size-5" />
-          </div>
-          <span className="font-bold text-lg tracking-tight">
-            THE<span className="text-primary">HOTEL</span>360
-          </span> */}
-          <img src={logo} alt="" className="h-[45px] w-[150px] " />
-        </Link>
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <Link
+          to="/"
+          className="flex items-center gap-2 shrink-0"
+          onClick={(e) => {
+            if (window.location.pathname === "/") {
+              e.preventDefault();
 
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }
+          }}
+        >
+          <img src={logo} alt="" className="h-[45px] w-[150px]" />
+        </Link>
         <nav className="hidden xl:flex items-center gap-1 text-sm">
           {links.slice(0, 10).map((l) => (
             <Link

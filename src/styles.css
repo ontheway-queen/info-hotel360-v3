@@ -49,10 +49,11 @@
   --popover-foreground: oklch(0.18 0.02 260);
 
   /* Brand orange #FB6604 */
-  --primary: #04505a;
-  --primary-foreground: oklch(0.99 0 0);
-  /* --primary-glow: oklch(55.856% 0.11678 236.397); */
-  --primary-glow: #04505a;
+  /* --primary: #04505a; */
+  --primary: #D6A95B;
+  --primary-foreground: oklch(100% 0.00011 271.152);
+  /* --primary-glow: #04505a; */
+  --primary-glow: #d6a95b;
 
   /* Dark #0F172A */
   --dark: oklch(0.205 0.04 265);
