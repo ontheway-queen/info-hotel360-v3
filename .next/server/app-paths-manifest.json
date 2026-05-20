@@ -1,1 +1,8 @@
-{}
+{
+  "/page": "app/page.js",
+  "/online-booking/page": "app/online-booking/page.js",
+  "/modules/page": "app/modules/page.js",
+  "/accounting-finance/page": "app/accounting-finance/page.js",
+  "/cash-drawer/page": "app/cash-drawer/page.js",
+  "/pricing/page": "app/pricing/page.js"
+}
