@@ -1,1 +1,149 @@
-{"version":3,"caseSensitive":false,"basePath":"","rewrites":{"beforeFiles":[],"afterFiles":[],"fallback":[]},"redirects":[{"source":"/:path+/","destination":"/:path+","permanent":true,"internal":true,"regex":"^(?:\\/((?:[^\\/]+?)(?:\\/(?:[^\\/]+?))*))\\/$"}],"headers":[]}
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/accounting-finance",
+      "regex": "^/accounting\\-finance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/accounting\\-finance(?:/)?$"
+    },
+    {
+      "page": "/cash-drawer",
+      "regex": "^/cash\\-drawer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cash\\-drawer(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/features",
+      "regex": "^/features(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/features(?:/)?$"
+    },
+    {
+      "page": "/hrm-payroll",
+      "regex": "^/hrm\\-payroll(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/hrm\\-payroll(?:/)?$"
+    },
+    {
+      "page": "/inventory",
+      "regex": "^/inventory(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/inventory(?:/)?$"
+    },
+    {
+      "page": "/modules",
+      "regex": "^/modules(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modules(?:/)?$"
+    },
+    {
+      "page": "/multi-property",
+      "regex": "^/multi\\-property(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/multi\\-property(?:/)?$"
+    },
+    {
+      "page": "/night-audit",
+      "regex": "^/night\\-audit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/night\\-audit(?:/)?$"
+    },
+    {
+      "page": "/online-booking",
+      "regex": "^/online\\-booking(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/online\\-booking(?:/)?$"
+    },
+    {
+      "page": "/pricing",
+      "regex": "^/pricing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/pricing(?:/)?$"
+    },
+    {
+      "page": "/reports",
+      "regex": "^/reports(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/reports(?:/)?$"
+    },
+    {
+      "page": "/request-demo",
+      "regex": "^/request\\-demo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/request\\-demo(?:/)?$"
+    },
+    {
+      "page": "/reservation-front-office",
+      "regex": "^/reservation\\-front\\-office(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/reservation\\-front\\-office(?:/)?$"
+    },
+    {
+      "page": "/settlement",
+      "regex": "^/settlement(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/settlement(?:/)?$"
+    },
+    {
+      "page": "/why-thehotel360",
+      "regex": "^/why\\-thehotel360(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/why\\-thehotel360(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

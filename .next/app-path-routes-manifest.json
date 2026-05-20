@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/accounting-finance/page": "/accounting-finance",
+  "/contact/page": "/contact",
+  "/cash-drawer/page": "/cash-drawer",
+  "/features/page": "/features",
+  "/hrm-payroll/page": "/hrm-payroll",
+  "/online-booking/page": "/online-booking",
+  "/night-audit/page": "/night-audit",
+  "/modules/page": "/modules",
+  "/page": "/",
+  "/inventory/page": "/inventory",
+  "/multi-property/page": "/multi-property",
+  "/request-demo/page": "/request-demo",
+  "/reports/page": "/reports",
+  "/pricing/page": "/pricing",
+  "/why-thehotel360/page": "/why-thehotel360",
+  "/settlement/page": "/settlement",
+  "/reservation-front-office/page": "/reservation-front-office"
+}

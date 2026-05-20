@@ -1,8 +1,20 @@
 {
-  "/page": "app/page.js",
-  "/online-booking/page": "app/online-booking/page.js",
-  "/modules/page": "app/modules/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/accounting-finance/page": "app/accounting-finance/page.js",
+  "/contact/page": "app/contact/page.js",
   "/cash-drawer/page": "app/cash-drawer/page.js",
-  "/pricing/page": "app/pricing/page.js"
+  "/features/page": "app/features/page.js",
+  "/hrm-payroll/page": "app/hrm-payroll/page.js",
+  "/online-booking/page": "app/online-booking/page.js",
+  "/night-audit/page": "app/night-audit/page.js",
+  "/modules/page": "app/modules/page.js",
+  "/page": "app/page.js",
+  "/inventory/page": "app/inventory/page.js",
+  "/multi-property/page": "app/multi-property/page.js",
+  "/request-demo/page": "app/request-demo/page.js",
+  "/reports/page": "app/reports/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/why-thehotel360/page": "app/why-thehotel360/page.js",
+  "/settlement/page": "app/settlement/page.js",
+  "/reservation-front-office/page": "app/reservation-front-office/page.js"
 }
