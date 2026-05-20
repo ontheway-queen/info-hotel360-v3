@@ -26,7 +26,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     try {
       const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
       if (saved === "en" || saved === "bn") setLangState(saved);
-    } catch {}
+    } catch (e) {
+      console.warn("Failed to load language from localStorage", e);
+    }
   }, []);
 
   useEffect(() => {
@@ -39,7 +41,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLangState(l);
     try {
       localStorage.setItem(STORAGE_KEY, l);
-    } catch {}
+    } catch (e) {
+      console.warn("Failed to save language to localStorage", e);
+    }
   }, []);
 
   const value = useMemo(

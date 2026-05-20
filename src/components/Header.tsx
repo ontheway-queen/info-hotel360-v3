@@ -1,9 +1,14 @@
+"use client";
+
 import { useState } from "react";
-import { Menu, X, Hotel } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import logo from "/reservation.png";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const logo = "/reservation.png";
+
 const links = [
   { to: "/", key: "home" as const },
   { to: "/why-thehotel360", key: "why" as const },
@@ -22,12 +27,13 @@ const links = [
 export function Header() {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <Link
-          to="/"
+          href="/"
           className="flex items-center gap-2 shrink-0"
           onClick={(e) => {
             if (window.location.pathname === "/") {
@@ -43,23 +49,28 @@ export function Header() {
           <img src={logo} alt="" className="h-[45px] w-[150px]" />
         </Link>
         <nav className="hidden xl:flex items-center gap-1 text-sm">
-          {links.slice(0, 10).map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-              activeProps={{ className: "px-3 py-2 rounded-md text-primary font-semibold bg-soft" }}
-              activeOptions={{ exact: l.to === "/" }}
-            >
-              {t.nav[l.key]}
-            </Link>
-          ))}
+          {links.slice(0, 10).map((l) => {
+            const isActive = l.to === "/" ? pathname === "/" : pathname?.startsWith(l.to);
+            return (
+              <Link
+                key={l.to}
+                href={l.to}
+                className={`px-3 py-2 rounded-md transition-colors ${
+                  isActive
+                    ? "text-primary font-semibold bg-soft"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {t.nav[l.key]}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <Link
-            to="/request-demo"
+            href="/request-demo"
             className="hidden md:inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-primary-foreground text-sm font-semibold shadow-elegant hover:opacity-90 transition"
           >
             {t.nav.requestDemo}
@@ -77,20 +88,23 @@ export function Header() {
       {open && (
         <div className="xl:hidden border-t border-border bg-background">
           <nav className="px-4 py-3 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                className="px-3 py-2 rounded-md text-sm hover:bg-muted"
-                activeProps={{
-                  className: "px-3 py-2 rounded-md text-sm text-primary font-semibold bg-soft",
-                }}
-                activeOptions={{ exact: l.to === "/" }}
-              >
-                {t.nav[l.key]}
-              </Link>
-            ))}
+            {links.map((l) => {
+              const isActive = l.to === "/" ? pathname === "/" : pathname?.startsWith(l.to);
+              return (
+                <Link
+                  key={l.to}
+                  href={l.to}
+                  onClick={() => setOpen(false)}
+                  className={`px-3 py-2 rounded-md text-sm transition-colors ${
+                    isActive
+                      ? "text-primary font-semibold bg-soft"
+                      : "hover:bg-muted text-foreground"
+                  }`}
+                >
+                  {t.nav[l.key]}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}

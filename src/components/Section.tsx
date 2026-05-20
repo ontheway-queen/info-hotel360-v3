@@ -1,5 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 export function Section({
   children,
@@ -11,7 +14,10 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 ${className}`}>
+    <section
+      id={id}
+      className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 ${className}`}
+    >
       {children}
     </section>
   );
@@ -92,13 +98,19 @@ export function CTABanner({
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
           <h3 className="text-2xl md:text-4xl font-bold max-w-2xl">{title}</h3>
           <div className="flex flex-wrap gap-3">
-            <a href={primary.to} className="px-6 py-3 rounded-lg bg-gradient-primary text-primary-foreground font-semibold shadow-elegant hover:scale-105 transition">
+            <Link
+              href={primary.to}
+              className="px-6 py-3 rounded-lg bg-gradient-primary text-primary-foreground font-semibold shadow-elegant hover:scale-105 transition"
+            >
               {primary.label}
-            </a>
+            </Link>
             {secondary && (
-              <a href={secondary.to} className="px-6 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/10 transition">
+              <Link
+                href={secondary.to}
+                className="px-6 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/10 transition"
+              >
                 {secondary.label}
-              </a>
+              </Link>
             )}
           </div>
         </div>

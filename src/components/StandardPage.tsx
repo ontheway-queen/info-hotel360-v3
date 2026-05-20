@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReactNode } from "react";
 import { Section, SectionHeader, FeatureGrid, CTABanner } from "@/components/Section";
 import { useLanguage } from "@/i18n/LanguageProvider";

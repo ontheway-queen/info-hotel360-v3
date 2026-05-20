@@ -1,3 +1,5 @@
+"use client";
+
 import { Check, X, Minus } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -5,11 +7,24 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 // Pattern per row: [manual, basic, hotel360]
 // Values: 0 = no, 0.5 = partial, 1 = yes
 const matrix: Array<[number, number, number]> = [
-  [0, 1, 1], [0, 0, 1], [0, 0.5, 1], [0.5, 0.5, 1],
-  [0.5, 1, 1], [0, 0, 1], [0, 0, 1], [0, 0, 1],
-  [0, 0.5, 1], [0, 0.5, 1], [0, 0, 1], [0, 0, 1],
-  [0, 0.5, 1], [0, 0.5, 1], [0, 0.5, 1], [0, 0, 1],
-  [0, 0, 1], [0, 0, 1],
+  [0, 1, 1],
+  [0, 0, 1],
+  [0, 0.5, 1],
+  [0.5, 0.5, 1],
+  [0.5, 1, 1],
+  [0, 0, 1],
+  [0, 0, 1],
+  [0, 0, 1],
+  [0, 0.5, 1],
+  [0, 0.5, 1],
+  [0, 0, 1],
+  [0, 0, 1],
+  [0, 0.5, 1],
+  [0, 0.5, 1],
+  [0, 0.5, 1],
+  [0, 0, 1],
+  [0, 0, 1],
+  [0, 0, 1],
 ];
 
 function Cell({ v, highlight }: { v: number; highlight?: boolean }) {
@@ -28,8 +43,12 @@ export function ComparisonTable() {
         <thead>
           <tr className="bg-muted/50">
             <th className="text-left px-5 py-4 font-semibold w-1/2">Feature</th>
-            <th className="px-4 py-4 font-semibold text-muted-foreground text-center">{c.colManual}</th>
-            <th className="px-4 py-4 font-semibold text-muted-foreground text-center">{c.colBasic}</th>
+            <th className="px-4 py-4 font-semibold text-muted-foreground text-center">
+              {c.colManual}
+            </th>
+            <th className="px-4 py-4 font-semibold text-muted-foreground text-center">
+              {c.colBasic}
+            </th>
             <th className="px-4 py-4 font-bold text-primary text-center bg-soft border-l-2 border-primary">
               {c.colHotel360}
             </th>
@@ -46,8 +65,12 @@ export function ComparisonTable() {
               className="border-t border-border hover:bg-muted/30"
             >
               <td className="px-5 py-3.5 font-medium">{row}</td>
-              <td className="px-4 py-3.5 text-center"><Cell v={matrix[i][0]} /></td>
-              <td className="px-4 py-3.5 text-center"><Cell v={matrix[i][1]} /></td>
+              <td className="px-4 py-3.5 text-center">
+                <Cell v={matrix[i][0]} />
+              </td>
+              <td className="px-4 py-3.5 text-center">
+                <Cell v={matrix[i][1]} />
+              </td>
               <td className="px-4 py-3.5 text-center bg-soft/50 border-l-2 border-primary">
                 <Cell v={matrix[i][2]} highlight />
               </td>

@@ -50,7 +50,7 @@
 
   /* Brand orange #FB6604 */
   /* --primary: #04505a; */
-  --primary: #D6A95B;
+  --primary: #d6a95b;
   --primary-foreground: oklch(100% 0.00011 271.152);
   /* --primary-glow: #04505a; */
   --primary-glow: #d6a95b;
@@ -91,24 +91,45 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  html[lang="bn"] body { font-family: var(--font-bangla); }
-  h1, h2, h3, h4 { letter-spacing: -0.02em; }
+  html[lang="bn"] body {
+    font-family: var(--font-bangla);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer utilities {
-  .bg-gradient-primary { background-image: var(--gradient-primary); }
-  .bg-gradient-dark { background-image: var(--gradient-dark); }
-  .shadow-elegant { box-shadow: var(--shadow-elegant); }
-  .shadow-card { box-shadow: var(--shadow-card); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-dark {
+    background-image: var(--gradient-dark);
+  }
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
   .text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;

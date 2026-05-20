@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import {
-  BedDouble, Users, DollarSign, ArrowRight, ArrowLeft,
-  Wallet, Moon, TrendingUp,
+  BedDouble,
+  Users,
+  DollarSign,
+  ArrowRight,
+  ArrowLeft,
+  Wallet,
+  Moon,
+  TrendingUp,
 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -32,7 +38,9 @@ export function DashboardMockup() {
       >
         <div className="flex items-center justify-between mb-5">
           <div>
-            <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">{m.subtitle}</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">
+              {m.subtitle}
+            </p>
             <h3 className="text-lg font-bold">{m.title}</h3>
           </div>
           <div className="flex items-center gap-2 text-xs px-2.5 py-1 rounded-full bg-success/10 text-success font-semibold">
@@ -52,8 +60,12 @@ export function DashboardMockup() {
                 className={`p-4 rounded-xl border ${c.tone === "primary" ? "bg-soft border-primary/30" : "bg-background border-border"}`}
               >
                 <div className="flex items-center gap-2 mb-1.5">
-                  <Icon className={`size-4 ${c.tone === "primary" ? "text-primary" : "text-muted-foreground"}`} />
-                  <span className="text-[10px] text-muted-foreground font-medium leading-tight">{c.label}</span>
+                  <Icon
+                    className={`size-4 ${c.tone === "primary" ? "text-primary" : "text-muted-foreground"}`}
+                  />
+                  <span className="text-[10px] text-muted-foreground font-medium leading-tight">
+                    {c.label}
+                  </span>
                 </div>
                 <p className="text-xl font-bold">{c.value}</p>
               </motion.div>
