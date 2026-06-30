@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Lang = "en" | "bn";
 import {
   MdHotel,
@@ -28,7 +29,7 @@ export const translations = {
       inventory: "Inventory",
       hrm: "HRM & Payroll",
       reports: "Reports",
-      pricing: "Pricing",
+      // pricing: "Pricing",
       contact: "Contact",
       requestDemo: "Request Demo",
       product: "Product",
@@ -528,7 +529,7 @@ export const translations = {
       },
     },
     footer: {
-      tagline: "The complete operating system for modern hotels.",
+      tagline: "Manage reservations, front office, folios, accounting, settlements, night audit, housekeeping, restaurant, inventory, HRM, online booking, and reports — all in one powerful platform",
       product: "Product",
       company: "Company",
       support: "Support",
@@ -536,6 +537,32 @@ export const translations = {
       rights: "All rights reserved.",
       address: "House #74, Road #07, Banani Dhaka, Bangladesh",
     },
+    officeLocations: [
+      {
+        id: 1,
+        country: "United States",
+        flag: "US",
+        address: "9912 201 Street, Hollis, NY 11423, USA",
+      },
+      {
+        id: 2,
+        country: "United Kingdom",
+        flag: "GB",
+        address: "44 Lucas Avenue, London, England, E13 0RL",
+      },
+      {
+        id: 3,
+        country: "Australia",
+        flag: "AU",
+        address: "1A Tunis Place, Quakers Hill, Sydney, NSW 2763",
+      },
+      {
+        id: 4,
+        country: "Bangladesh",
+        flag: "BD",
+        address: "House 74, Road 7, Block H, Banani, Dhaka",
+      },
+    ],
     contactInfo: {
       address: "House #74, Road #07, Banani, Dhaka, Bangladesh",
       phone: "09638-336699, 01958398325, 01958398313, +880 1958-398308",
@@ -626,7 +653,7 @@ export const translations = {
       inventory: "ইনভেন্টরি",
       hrm: "HRM ও পে-রোল",
       reports: "রিপোর্ট",
-      pricing: "প্রাইসিং",
+      // pricing: "প্রাইসিং",
       contact: "যোগাযোগ",
       requestDemo: "ডেমো চাই",
       product: "প্রোডাক্ট",
@@ -1125,7 +1152,7 @@ export const translations = {
       },
     },
     footer: {
-      tagline: "আধুনিক হোটেল পরিচালনার সম্পূর্ণ অপারেটিং সিস্টেম।",
+      tagline: "রিজার্ভেশন, ফ্রন্ট অফিস, ফোলিও, অ্যাকাউন্টিং, সেটেলমেন্ট, নাইট অডিট, হাউসকিপিং, রেস্টুরেন্ট, ইনভেন্টরি, এইচআরএম, অনলাইন বুকিং এবং রিপোর্টস — সবকিছু একটি শক্তিশালী প্ল্যাটফর্মের মাধ্যমে পরিচালনা করুন।",
       product: "প্রোডাক্ট",
       company: "কোম্পানি",
       support: "সাপোর্ট",
@@ -1133,12 +1160,39 @@ export const translations = {
       rights: "সকল অধিকার সংরক্ষিত।",
       address: "বাড়ি #৭৪, রোড #০৭, বনানী, ঢাকা, বাংলাদেশ",
     },
+    officeLocations: [
+      {
+        id: 1,
+        country: "যুক্তরাষ্ট্র",
+        flag: "US",
+        address: "৯৯১২, ২০১ স্ট্রিট, হলিস, নিউ ইয়র্ক ১১৪২৩, যুক্তরাষ্ট্র",
+      },
+      {
+        id: 2,
+        country: "যুক্তরাজ্য",
+        flag: "GB",
+        address: "৪৪ লুকাস অ্যাভিনিউ, লন্ডন, ইংল্যান্ড, E13 0RL",
+      },
+      {
+        id: 3,
+        country: "অস্ট্রেলিয়া",
+        flag: "AU",
+        address: "১এ টিউনিস প্লেস, কোয়েকার্স হিল, সিডনি, নিউ সাউথ ওয়েলস ২৭৬৩",
+      },
+      {
+        id: 4,
+        country: "বাংলাদেশ",
+        flag: "BD",
+        address: "বাড়ি #৭৪, রোড #০৭, ব্লক-এইচ, বনানী, ঢাকা",
+      },
+    ],
 
     contactInfo: {
       address: "বাড়ি #৭৪, রোড #০৭, বনানী, ঢাকা, বাংলাদেশ",
       phone: "০৯৬৩৮-৩৩৬৬৯৯, ০১৯৫৮৩৯৮৩২৫, ০১৯৫৮৩৯৮৩১৩, +৮৮০ ১৯৫৮-৩৯৮৩০৮",
       email: "sup.m360ict@gmail.com",
     },
+
     seo: {
       home: {
         title: "THEHOTEL360 | সম্পূর্ণ হোটেল ম্যানেজমেন্ট সফটওয়্যার",

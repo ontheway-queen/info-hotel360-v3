@@ -1,10 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 "use client";
-
+import ReactCountryFlag from "react-country-flag";
 import Link from "next/link";
-import { Globe, Hotel, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { MdFacebook } from "react-icons/md";
-import { FaLinkedin } from "react-icons/fa";
 
 const logo = "/reservation.png";
 
@@ -12,7 +12,7 @@ export function Footer() {
   const { t } = useLanguage();
   return (
     <footer className="bg-dark text-white/80 mt-24">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-4 py-16 grid grid-cols-2 md:grid-cols-6 gap-5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 py-16 grid grid-cols-2 md:grid-cols-6 gap-5">
         <div className="col-span-2">
           <div className="flex items-center bg-white p-3 w-fit rounded-lg gap-2 mb-4">
             <img src={logo} alt="" className="h-[65px] w-[220px] rounded-lg" />
@@ -103,10 +103,6 @@ export function Footer() {
 
           <ul className="space-y-3 text-sm">
             {/* Address */}
-            <li className="flex items-start gap-2">
-              <MapPin className="size-6 mt-0.5 text-white" />
-              <span>{t.contactInfo.address}</span>
-            </li>
 
             {/* Phones */}
             <li className="flex items-center gap-2">
@@ -137,10 +133,37 @@ export function Footer() {
           </div>
         </div>
       </div>
+      <section className="border-t border-white/10 py-8">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {t?.officeLocations?.map((office: any) => (
+              <div key={office.id}>
+                <div className="flex items-center gap-2">
+                  <ReactCountryFlag
+                    countryCode={office.flag}
+                    svg
+                    style={{
+                      width: "28px",
+                      height: "20px",
+                    }}
+                  />
+
+                  <h3 className="font-semibold text-white">{office.country}</h3>
+                </div>
+
+                <p className="mt-3 text-sm leading-6 text-gray-200">{office.address}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between text-xs text-white/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 px-8 py-6 flex flex-col md:flex-row items-center justify-between text-xs text-white/60">
           <p>
-            © {new Date().getFullYear()} THEHOTEL360. {t.footer.rights}
+            © {new Date().getFullYear()} THEHOTEL360. {t.footer.rights} | A Product By{" "}
+            <Link className="text-[#38B1ED]" target="_blank" href="https://m360ict.com/">
+              M360 ICT
+            </Link>
           </p>
           <p>{t.footer.address}</p>
         </div>

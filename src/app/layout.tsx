@@ -1,11 +1,12 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 import type { Metadata } from "next";
 import ClientLayout from "./client-layout";
-import "../styles.css";
+import "./global.css";
 
 export const metadata: Metadata = {
   title: "THE HOTEL 360",
   description:
-    "Hotel Harmony Hub is a comprehensive hotel management platform for modern hospitality businesses.",
+    "Manage reservations, front office, folios, accounting, settlements, night audit, housekeeping, restaurant, inventory, HRM, online booking, and reports — all in one powerful platform.",
   authors: [{ name: "Lovable" }],
   openGraph: {
     title: "THE HOTEL 360",

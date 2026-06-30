@@ -19,7 +19,7 @@ const links = [
   { to: "/cash-drawer", key: "cashDrawer" as const },
   { to: "/settlement", key: "settlement" as const },
   { to: "/night-audit", key: "nightAudit" as const },
-  { to: "/pricing", key: "pricing" as const },
+  // { to: "/pricing", key: "pricing" as const },
   { to: "/reports", key: "reports" as const },
   { to: "/contact", key: "contact" as const },
 ];
@@ -61,7 +61,7 @@ export function Header() {
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               >
-                {t.nav[l.key]}
+                {t?.nav[l.key]}
               </Link>
             );
           })}
@@ -88,8 +88,13 @@ export function Header() {
       {open && (
         <div className="xl:hidden border-t border-border bg-background">
           <nav className="px-4 py-3 flex flex-col gap-1 max-h-[70vh] overflow-y-auto">
-            {links.map((l) => {
+            {/* ⚡ 'any' এর বদলে সঠিক অবজেক্ট স্ট্রাকচার টাইপ ডিফাইন করা হয়েছে */}
+            {links.map((l: { to: string; key: string }) => {
               const isActive = l.to === "/" ? pathname === "/" : pathname?.startsWith(l.to);
+
+              // ⚡ ডাইনামিক কি (key) ফিক্স করার জন্য 'as keyof' ব্যবহার করা হয়েছে
+              const navLabel = t.nav[l.key as keyof typeof t.nav] || l.key;
+
               return (
                 <Link
                   key={l.to}
@@ -101,7 +106,7 @@ export function Header() {
                       : "hover:bg-muted text-foreground"
                   }`}
                 >
-                  {t.nav[l.key]}
+                  {navLabel}
                 </Link>
               );
             })}
