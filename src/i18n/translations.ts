@@ -512,7 +512,7 @@ export const translations = {
       phone: "Phone",
       rooms: "Number of Rooms",
       message: "Message",
-      submit: "Send on WhatsApp",
+      submit: "Send Request",
       success: "Thanks! Our team will contact you shortly.",
       validation: {
         required: "This field is required",
@@ -529,7 +529,8 @@ export const translations = {
       },
     },
     footer: {
-      tagline: "Manage reservations, front office, folios, accounting, settlements, night audit, housekeeping, restaurant, inventory, HRM, online booking, and reports — all in one powerful platform",
+      tagline:
+        "Manage reservations, front office, folios, accounting, settlements, night audit, housekeeping, restaurant, inventory, HRM, online booking, and reports — all in one powerful platform",
       product: "Product",
       company: "Company",
       support: "Support",
@@ -1135,7 +1136,7 @@ export const translations = {
       phone: "ফোন",
       rooms: "রুম সংখ্যা",
       message: "মেসেজ",
-      submit: "হোয়াটসঅ্যাপে পাঠান",
+      submit: "অনুরোধ পাঠান",
       success: "ধন্যবাদ! আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করবে।",
       validation: {
         required: "এই ফিল্ডটি আবশ্যক",
@@ -1152,7 +1153,8 @@ export const translations = {
       },
     },
     footer: {
-      tagline: "রিজার্ভেশন, ফ্রন্ট অফিস, ফোলিও, অ্যাকাউন্টিং, সেটেলমেন্ট, নাইট অডিট, হাউসকিপিং, রেস্টুরেন্ট, ইনভেন্টরি, এইচআরএম, অনলাইন বুকিং এবং রিপোর্টস — সবকিছু একটি শক্তিশালী প্ল্যাটফর্মের মাধ্যমে পরিচালনা করুন।",
+      tagline:
+        "রিজার্ভেশন, ফ্রন্ট অফিস, ফোলিও, অ্যাকাউন্টিং, সেটেলমেন্ট, নাইট অডিট, হাউসকিপিং, রেস্টুরেন্ট, ইনভেন্টরি, এইচআরএম, অনলাইন বুকিং এবং রিপোর্টস — সবকিছু একটি শক্তিশালী প্ল্যাটফর্মের মাধ্যমে পরিচালনা করুন।",
       product: "প্রোডাক্ট",
       company: "কোম্পানি",
       support: "সাপোর্ট",
