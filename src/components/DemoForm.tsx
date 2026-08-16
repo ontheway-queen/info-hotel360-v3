@@ -80,7 +80,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, SendIcon } from "lucide-react";
+import { CheckCircle2, Loader2, SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -94,9 +94,9 @@ export function DemoForm() {
   const demoSchema = z.object({
     fullName: z.string().min(2, isBn ? "পূর্ণ নাম প্রয়োজন" : "Full name is required"),
 
-    companyName: z.string().min(2, isBn ? "কোম্পানির নাম প্রয়োজন" : "Company name is required"),
+    companyName: z.string().optional(),
 
-    hotelName: z.string().min(2, isBn ? "হোটেলের নাম প্রয়োজন" : "Hotel name is required"),
+    hotelName: z.string().optional(),
 
     email: z.string().email(isBn ? "একটি সঠিক ইমেইল দিন" : "Invalid email address"),
 
@@ -105,12 +105,14 @@ export function DemoForm() {
       .min(8, isBn ? "ফোন নম্বর খুব ছোট" : "Phone number is too short")
       .regex(/^\+?\d+$/, isBn ? "সঠিক ফোন নম্বর দিন" : "Invalid phone number"),
 
-    rooms: z.string().min(1, isBn ? "রুম সংখ্যা প্রয়োজন" : "Number of rooms is required"),
+    rooms: z.string().optional(),
 
     message: z.string().min(5, isBn ? "মেসেজ প্রয়োজন" : "Message is required"),
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   type DemoFormValues = z.infer<typeof demoSchema>;
 
@@ -124,32 +126,52 @@ export function DemoForm() {
     mode: "onChange",
   });
 
-  const onSubmit = (data: DemoFormValues) => {
-    const text = `
-🏨 New Demo Request For THEHOTEL360
+  const onSubmit = async (data: DemoFormValues) => {
+    setLoading(true);
+    setErrorMsg(null);
+    try {
+      const payload: Record<string, string> = {
+        service_name: "Hotel360",
+      };
 
-👤 Name: ${data.fullName}
-🏢 Company: ${data.companyName}
-🏨 Hotel: ${data.hotelName}
-🛏 Rooms: ${data.rooms}
+      if (data.fullName?.trim()) payload.name = data.fullName.trim();
+      if (data.email?.trim()) payload.email = data.email.trim();
+      if (data.phone?.trim()) payload.phone = data.phone.trim();
+      if (data.companyName?.trim()) payload.company_name = data.companyName.trim();
 
-📧 Email: ${data.email}
-📱 Phone: ${data.phone}
+      const detailsParts: string[] = [];
+      if (data.hotelName?.trim()) detailsParts.push(`Hotel Name: ${data.hotelName.trim()}`);
+      if (data.rooms?.trim()) detailsParts.push(`Rooms: ${data.rooms.trim()}`);
+      if (data.message?.trim()) detailsParts.push(`Details: ${data.message.trim()}`);
 
-📝 Message:
-${data.message}
-    `;
+      if (detailsParts.length > 0) {
+        payload.details = detailsParts.join(", ");
+      }
 
-    const encodedText = encodeURIComponent(text);
+      const res = await fetch("https://erm-server.m360ict.com/api/v1/public/common/service-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    // Replace with your WhatsApp number
-    const whatsappNumber = "8801958398308";
+      if (!res.ok) {
+        throw new Error("Failed to submit request");
+      }
 
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedText}`, "_blank");
-
-    setSubmitted(true);
-
-    reset();
+      setSubmitted(true);
+      reset();
+    } catch (err) {
+      console.error("Service request error:", err);
+      setErrorMsg(
+        isBn
+          ? "অনুরোধ জমা দিতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
+          : "Something went wrong submitting your request. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -218,14 +240,23 @@ ${data.message}
       <div className="mt-4">
         {field("message", t.demoForm.message, t.demoForm.placeholders.message, "text", "textarea")}
       </div>
+      {errorMsg && (
+        <p className="mt-3 text-center text-sm font-medium text-destructive">{errorMsg}</p>
+      )}
       <div className="w-full flex justify-center">
         <button
           type="submit"
-          className="mt-6 inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-gradient-to-r from-primary to-primary-glow px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-transform hover:scale-[1.02] md:w-auto"
+          disabled={loading}
+          className="mt-6 inline-flex w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-gradient-to-r from-primary to-primary-glow px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed md:w-auto"
         >
-          {t.demoForm.submit}
-
-          <SendIcon size={16} />
+          {loading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <>
+              {t.demoForm.submit}
+              <SendIcon size={16} />
+            </>
+          )}
         </button>
       </div>
     </form>
