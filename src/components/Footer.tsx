@@ -24,11 +24,11 @@ export function Footer() {
           <h4 className="text-white font-semibold mb-3 text-sm">{t.footer.product}</h4>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/features" className="hover:text-primary">
-                {t.nav.features}
+              <Link href="/why-thehotel360" className="hover:text-primary">
+                {t.nav.why}
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/modules" className="hover:text-primary">
                 {t.nav.modules}
               </Link>
@@ -42,7 +42,7 @@ export function Footer() {
               <Link href="/multi-property" className="hover:text-primary">
                 {t.nav.multiProperty}
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -54,7 +54,7 @@ export function Footer() {
                 {t.nav.reservation}
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/cash-drawer" className="hover:text-primary">
                 {t.nav.cashDrawer}
               </Link>
@@ -68,14 +68,14 @@ export function Footer() {
               <Link href="/inventory" className="hover:text-primary">
                 {t.nav.inventory}
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
         <div>
           <h4 className="text-white font-semibold mb-3 text-sm">{t.nav.finance}</h4>
           <ul className="space-y-2 text-sm">
-            <li>
+            {/* <li>
               <Link href="/accounting-finance" className="hover:text-primary">
                 {t.nav.accounting}
               </Link>
@@ -89,7 +89,7 @@ export function Footer() {
               <Link href="/reports" className="hover:text-primary">
                 {t.nav.reports}
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/hrm-payroll" className="hover:text-primary">
                 {t.nav.hrm}

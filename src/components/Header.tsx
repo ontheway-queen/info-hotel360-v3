@@ -12,16 +12,16 @@ const logo = "/reservation.png";
 const links = [
   { to: "/", key: "home" as const },
   { to: "/why-thehotel360", key: "why" as const },
-  { to: "/features", key: "features" as const },
-  { to: "/modules", key: "modules" as const },
-  { to: "/online-booking", key: "onlineBooking" as const },
-  { to: "/accounting-finance", key: "accounting" as const },
-  { to: "/cash-drawer", key: "cashDrawer" as const },
-  { to: "/settlement", key: "settlement" as const },
-  { to: "/night-audit", key: "nightAudit" as const },
-  // { to: "/pricing", key: "pricing" as const },
-  { to: "/reports", key: "reports" as const },
-  { to: "/contact", key: "contact" as const },
+  // { to: "/features", key: "features" as const },
+  // { to: "/modules", key: "modules" as const },
+  // { to: "/online-booking", key: "onlineBooking" as const },
+  // { to: "/accounting-finance", key: "accounting" as const },
+  // { to: "/cash-drawer", key: "cashDrawer" as const },
+  // { to: "/settlement", key: "settlement" as const },
+  // { to: "/night-audit", key: "nightAudit" as const },
+  // // { to: "/pricing", key: "pricing" as const },
+  // { to: "/reports", key: "reports" as const },
+  // { to: "/contact", key: "contact" as const },
 ];
 
 export function Header() {

@@ -514,9 +514,12 @@ export const translations = {
       message: "Message",
       submit: "Send Request",
       success: "Thanks! Our team will contact you shortly.",
+      captcha: "Security Verification",
+      robotCheck: "I'm not a robot",
       validation: {
         required: "This field is required",
         email: "Please enter a valid email",
+        robotRequired: "Please verify that you are not a robot",
       },
       placeholders: {
         fullName: "Enter your full name",
@@ -1138,9 +1141,12 @@ export const translations = {
       message: "মেসেজ",
       submit: "অনুরোধ পাঠান",
       success: "ধন্যবাদ! আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করবে।",
+      captcha: "সিকিউরিটি ভেরিফিকেশন",
+      robotCheck: "আমি রোবট নই",
       validation: {
         required: "এই ফিল্ডটি আবশ্যক",
         email: "একটি বৈধ ইমেইল দিন",
+        robotRequired: "অনুগ্রহ করে নিশ্চিত করুন যে আপনি রোবট নন",
       },
       placeholders: {
         fullName: "আপনার পূর্ণ নাম লিখুন",
