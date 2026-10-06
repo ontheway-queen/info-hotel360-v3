@@ -38,7 +38,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-soft border border-primary/20 text-primary text-xs font-semibold mb-6"
             >
-              <Sparkles className="size-3.5" /> {t.hero.badge}
+              {t.hero.badge}
             </motion.div>
 
             <motion.h1
@@ -137,7 +137,7 @@ export default function Home() {
       </Section>
 
       {/* Modules */}
-      <Section className="bg-soft/40 !max-w-none px-0">
+      {/* <Section className="bg-soft/40 !max-w-none px-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader eyebrow="Modules" title={t.modules.title} subtitle={t.modules.subtitle} />
           <FeatureGrid items={t.modules.items.slice(0, 18)} />
@@ -147,7 +147,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </Section>
+      </Section> */}
 
       {/* Online booking */}
       <Section>
@@ -161,16 +161,16 @@ export default function Home() {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.cashDrawer.title}</h2>
             <p className="text-white/70 mb-6">{t.cashDrawer.copy}</p>
-            <Link href="/cash-drawer" className="text-primary font-semibold hover:underline">
+            {/* <Link href="/cash-drawer" className="text-primary font-semibold hover:underline">
               {t.common.learnMore} →
-            </Link>
+            </Link> */}
           </div>
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.settlement.title}</h2>
             <p className="text-white/70 mb-6">{t.settlement.intro}</p>
-            <Link href="/settlement" className="text-primary font-semibold hover:underline">
+            {/* <Link href="/settlement" className="text-primary font-semibold hover:underline">
               {t.common.learnMore} →
-            </Link>
+            </Link> */}
           </div>
         </div>
       </Section>
@@ -190,7 +190,7 @@ export default function Home() {
       <CTABanner
         title={t.comparison.cta}
         primary={{ label: t.common.requestDemo, to: "/pricing" }}
-        secondary={{ label: t.common.exploreFeatures, to: "/features" }}
+        // secondary={{ label: t.common.exploreFeatures, to: "/features" }}
       />
     </>
   );

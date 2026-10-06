@@ -104,14 +104,14 @@ export function CTABanner({
             >
               {primary.label}
             </Link>
-            {secondary && (
+            {/* {secondary && (
               <Link
                 href={secondary.to}
                 className="px-6 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/10 transition"
               >
                 {secondary.label}
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       </motion.div>

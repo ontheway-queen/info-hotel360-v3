@@ -1,95 +1,21 @@
-// import { useState } from "react";
-// import { motion } from "framer-motion";
-// import { useLanguage } from "@/i18n/LanguageProvider";
-
-// export function DemoForm() {
-//   const { t } = useLanguage();
-//   const f = t.demoForm;
-//   const [submitted, setSubmitted] = useState(false);
-//   const [errors, setErrors] = useState<Record<string, string>>({});
-
-//   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-//     e.preventDefault();
-//     const data = new FormData(e.currentTarget);
-//     const errs: Record<string, string> = {};
-//     ["fullName", "email", "phone"].forEach((k) => {
-//       if (!data.get(k)) errs[k] = f.validation.required;
-//     });
-//     const email = data.get("email") as string;
-//     if (email && !/^\S+@\S+\.\S+$/.test(email)) errs.email = f.validation.email;
-//     setErrors(errs);
-//     if (Object.keys(errs).length === 0) setSubmitted(true);
-//   }
-
-//   if (submitted) {
-//     return (
-//       <motion.div
-//         initial={{ opacity: 0, scale: 0.95 }}
-//         animate={{ opacity: 1, scale: 1 }}
-//         className="p-10 rounded-2xl bg-gradient-primary text-primary-foreground text-center font-semibold"
-//       >
-//         {f.success}
-//       </motion.div>
-//     );
-//   }
-
-//   const fields: { name: string; label: string; type?: string; full?: boolean; textarea?: boolean }[] = [
-//     { name: "fullName", label: f.fullName },
-//     { name: "companyName", label: f.companyName },
-//     { name: "hotelName", label: f.hotelName },
-//     { name: "email", label: f.email, type: "email" },
-//     { name: "phone", label: f.phone, type: "tel" },
-//     { name: "rooms", label: f.rooms, type: "number" },
-//     { name: "message", label: f.message, full: true, textarea: true },
-//   ];
-
-//   return (
-//     <form onSubmit={onSubmit} className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-card grid sm:grid-cols-2 gap-5">
-//       {fields.map((field) => (
-//         <div key={field.name} className={field.full ? "sm:col-span-2" : ""}>
-//           <label className="block text-sm font-semibold mb-1.5">{field.label}</label>
-//           {field.textarea ? (
-//             <textarea
-//               name={field.name}
-//               rows={4}
-//               className="w-full px-4 py-2.5 rounded-lg border border-input bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
-//             />
-//           ) : (
-//             <input
-//               name={field.name}
-//               type={field.type ?? "text"}
-//               className="w-full px-4 py-2.5 rounded-lg border border-input bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition"
-//             />
-//           )}
-//           {errors[field.name] && (
-//             <p className="text-xs text-destructive mt-1">{errors[field.name]}</p>
-//           )}
-//         </div>
-//       ))}
-//       <button
-//         type="submit"
-//         className="sm:col-span-2 px-6 py-3 rounded-lg bg-gradient-primary text-primary-foreground font-semibold shadow-elegant hover:opacity-90 transition"
-//       >
-//         {f.submit}
-//       </button>
-//     </form>
-//   );
-// }
-
 "use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, CheckCircle2, Loader2, SendIcon, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Loader2, SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { GoogleRecaptcha } from "@/components/GoogleRecaptcha";
 
 export function DemoForm() {
   const { t, lang } = useLanguage();
   const isBn = lang === "bn";
+
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [robotError, setRobotError] = useState<string | null>(null);
 
   const demoSchema = z.object({
     fullName: z
@@ -129,11 +55,6 @@ export function DemoForm() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // "I'm not a robot" checkbox state
-  const [isRobotVerified, setIsRobotVerified] = useState(false);
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [robotError, setRobotError] = useState<string | null>(null);
-
   type DemoFormValues = z.infer<typeof demoSchema>;
 
   const {
@@ -157,26 +78,23 @@ export function DemoForm() {
     Boolean(watchedFullName && watchedFullName.trim().length >= 2) &&
     Boolean(watchedEmail && emailRegex.test(watchedEmail.trim())) &&
     Boolean(watchedMessage && watchedMessage.trim().length >= 5) &&
-    isRobotVerified;
+    Boolean(captchaToken);
 
   const isSubmitDisabled = loading || !isFormValid;
 
-  const handleRobotToggle = () => {
-    if (isRobotVerified) {
-      setIsRobotVerified(false);
-      return;
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
+    if (token) {
+      setRobotError(null);
     }
-    if (isVerifying) return;
-    setIsVerifying(true);
-    setRobotError(null);
-    setTimeout(() => {
-      setIsVerifying(false);
-      setIsRobotVerified(true);
-    }, 600);
+  };
+
+  const handleCaptchaExpired = () => {
+    setCaptchaToken(null);
   };
 
   const onSubmit = async (data: DemoFormValues) => {
-    if (!isRobotVerified) {
+    if (!captchaToken) {
       setRobotError(t.demoForm.validation.robotRequired);
       return;
     }
@@ -219,7 +137,7 @@ export function DemoForm() {
 
       setSubmitted(true);
       reset();
-      setIsRobotVerified(false);
+      setCaptchaToken(null);
       setRobotError(null);
     } catch (err) {
       console.error("Service request error:", err);
@@ -281,6 +199,9 @@ export function DemoForm() {
     </div>
   );
 
+  const siteKey =
+    process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6Lf0eOEtAAAAANDfIwtWeIY57OCvZg6mf3FXUPh7";
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -318,54 +239,15 @@ export function DemoForm() {
         )}
       </div>
 
-      <div className="mt-5">
-        <div
-          className={`inline-flex w-full max-w-[310px] items-center justify-between rounded-lg border bg-[#f9fafb] px-3.5 py-3 shadow-xs dark:bg-card/90 transition-all ${
-            robotError
-              ? "border-destructive ring-1 ring-destructive/30"
-              : "border-border hover:border-border/80"
-          }`}
-        >
-          <div
-            onClick={handleRobotToggle}
-            className="flex cursor-pointer items-center gap-3 select-none"
-          >
-            <button
-              type="button"
-              role="checkbox"
-              aria-checked={isRobotVerified}
-              disabled={isVerifying}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRobotToggle();
-              }}
-              className={`relative flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-sm border-2 bg-white transition-all dark:bg-slate-900 ${
-                isRobotVerified
-                  ? "border-emerald-500 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40"
-                  : "border-slate-300 hover:border-slate-400 dark:border-slate-700"
-              }`}
-            >
-              {isVerifying ? (
-                <Loader2 className="h-4 w-4 animate-spin text-primary" />
-              ) : isRobotVerified ? (
-                <Check className="h-5 w-5 text-emerald-600 stroke-[3]" />
-              ) : null}
-            </button>
-
-            <span className="text-sm font-medium text-foreground">{t.demoForm.robotCheck}</span>
-          </div>
-
-          <div className="flex flex-col items-center pl-4 text-muted-foreground select-none">
-            <ShieldCheck className="h-6 w-6 text-primary/80" />
-            <span className="text-[10px] font-semibold tracking-tight text-foreground/80">
-              reCAPTCHA
-            </span>
-            <div className="flex gap-1 text-[9px] text-muted-foreground/70">
-              <span>Privacy</span>
-              <span>·</span>
-              <span>Terms</span>
-            </div>
-          </div>
+      <div className="mt-5 flex flex-col items-start">
+        <div className="overflow-hidden ">
+          <GoogleRecaptcha
+            key={lang}
+            siteKey={siteKey}
+            onChange={handleCaptchaChange}
+            onExpired={handleCaptchaExpired}
+            lang={isBn ? "bn" : "en"}
+          />
         </div>
 
         {robotError && <p className="mt-1.5 text-xs font-medium text-destructive">{robotError}</p>}
